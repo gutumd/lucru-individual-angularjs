@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="EN">
+<head>
+  <title>Magazin de PC-uri | Înregistrare</title>
+  <link rel="stylesheet" href="register.css">
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="registerDezactivat=true; showPasswordSecret=true;">
+<div ng-include="'header.html'"></div>
+<div class="main-container">
+  <form autocomplete="off" name="myForm" class="form-register" ng-submit="submitRegister()">
+    <div class="">
+      <h1>Înregistreaza-te</h1>
+      <p>Completeaza acest formular pentru a crea un cont.</p>
+      <p ng-hide="!mesajError" ng-bind="mesajError" style="color:red"></p>
+      <p ng-show="mesajSuccess" style="color:green">{{mesajSuccess}}</p>
+      <hr>
+      <label for="email"><b>Email</b></label>
+      <input validate-email class="form-control" id="email" type="text" placeholder="Enter Email" name="email"
+             ng-change="verificateDateRegister()" ng-model="email" required>
+      <span ng-show="myForm.email.$error.required">*Email-ul este obligatoriu.</span><br>
+    </br>
+      <label for="psw"><b>Parolă</b></label>
+      <input validate-password class="form-control" type="password" ng-focus="showPasswordSecret = false"
+             placeholder="Enter Password" id="psw"
+             name="psw" ng-change="verificateDateRegister()" ng-model="password" required>
+      <span ng-show="myForm.psw.$error.required">*Parola este obligatorie.</span><br> </br>
+
+      <label for="psw-repeat"><b>Repetă parola</b></label>
+      <input validate-password class="form-control" name="psw2" id="psw-repeat" type="password"
+             placeholder="Repeat Password" name="psw2"
+             id="psw2"
+             ng-change="verificateDateRegister()" ng-model="passwordRepeat" required>
+      <span ng-show="myForm.psw2.$error.required">*Parola repetată este obligatorie.</span><br> </br>
+      <p ng-hide="passwordRepeat == password" style="color:red">Parolele introduse trebuie să coincidă</p>
+      <p ng-hide="showPasswordSecret" style="color:green">"Introduce o parola ce va conține cel puțin 5 caractere și
+        obligatoriu să includă 1 majusculă, 1 minusculă și 1 cifră"</p>
+
+      <div class="clearfix">
+        <button type="submit" class="btn btn-default" ng-disabled="registerDezactivat">Înregistrare</button>
+      </div>
+      <br/>
+      <span>Ai deja cont? <a href="login.html">Autentifică-te</a></span>
+      <br/>
+    </div>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+  <title>Logare</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  
+  <script type="text/javascript" src="index.js"></script>
+
+</head>
+<style>
+    .form-login {
+        width: 50%;
+        margin-left: 25%
+    }
+
+</style>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl" ng-init="loginDezactivat=true;">
+  <div ng-include="'header.html'"></div>
+  <h2 style="text-align:center;">Login</h2>
+  <form class="container" class="form-login" autocomplete="off" name="myForm" ng-submit="submitLogin()">
+    <div class="form-group">
+      <p ng-hide="!mesajError" ng-bind="mesajError" style="color:red"></p>
+      <p ng-show="mesajSuccess" style="color:green">{{mesajSuccess}}</p>
+      <label for="email">Email:</label>
+      <input validate-email class="form-control" id="email" name="email" placeholder="Enter email"
+             ng-change="verificaDate()" ng-model="email" required>
+    </div>
+    <div class="form-group">
+      <label for="pwd">Parolă:</label>
+      <input validate-password type="password" class="form-control" id="pwd" placeholder="Enter password"
+             ng-change="verificaDate()" ng-model="password" required>
+    </div>
+    <button ng-disabled="loginDezactivat" type="submit" class="btn btn-default">Login</button>
+    <br/>
+    <span>Nu ai cont? <a href="register.html">Înregistrează-te</a></span>
+    <br/>
+  </form>
+</div>
+</body>
+</html>

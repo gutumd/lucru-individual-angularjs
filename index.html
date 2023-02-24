@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Magazin de PC-uri | Pagina principală</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <link href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"
+        id="bootstrap-css">
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</head>
+<style>
+
+</style>
+<body ng-app="myApp" style="padding: 30px;">
+<div ng-include="'header.html'"></div>
+<div class="center">
+  <div ng-controller="homeCtrl">
+      <div>
+        <p> Coșul dvs:  {{elementeCos}} </span></p>
+        <ul>
+          <li ng-repeat="x in cardItems track by $index">Nume: {{x.nume}}, Prețul: {{x.pret}} MDL<span
+            style="color:red;cursor: pointer;" ng-click="removeItem($index)">   Elimină din coș</span></li>
+          </ul>
+          <h5 ng-show="elementeCos"> Pentru comandă va fi necesar să achitați <span style="color:green">{{suma}} Lei </span>
+          </h5>
+        </div>
+        Filtrare: <input ng-mousemove="getdetails()" ng-paste="executeOnPaste()" ng-cut="executeOnCut()" type="text"  ng-change="search()" ng-model="cauta"/> {{count}}
+      </br>
+    </br>
+
+    <form>
+      Sortare:
+      <select ng-model="sortare">
+        <option value=""></option>
+        <option value="nume"> După nume [A-Z]
+          <option value="-nume"> După nume [Z-A]
+          </select>
+        </form>
+      </br>
+      
+   
+      
+    </br>
+    <div ng-repeat="x in items | filter :  {'nume' : cauta} | limitTo : limiteaza | orderBy: sortare"
+    class="col-xs-12 col-sm-6 col-md-3 ">
+      <div class="col-item">
+        <div class="post-img-content">
+          <img src="{{x.imagineURL}}" class="img-responsive"/>
+        </div>
+        <div class="info">
+          <div class="row">
+            <div class="price col-md-6">
+              <h5 ng-copy="executeCopy()">{{x.nume}}</h5>
+            </div>
+            <div class="rating hidden-sm col-md-6">
+              <h5 class="price-text-color">{{x.pret}} MDL</h5>
+              <h5 class="price-text-color">{{x.enpret}} MDL</h5>
+            </div>
+            <div class=" hidden-sm " style="padding: 0 10px;">
+              <h5 class="">Descriere:{{x.descriere}} </h5>
+              <h5 class="price-text-color"></h5>
+            </div>
+            
+          </div>
+          <div class="separator ">
+            <p >
+             <a href="#" class="hidden-sm" ng-click="addToCard(x)">Adaugă la coș</a>
+            </p>
+          </div>
+          <div class="clearfix">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+
